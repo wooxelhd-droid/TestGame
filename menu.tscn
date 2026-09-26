@@ -1,0 +1,131 @@
+[gd_scene format=3 uid="uid://2rnxogeeu4u2"]
+
+[ext_resource type="Material" uid="uid://byhoa2glvt4rq" path="res://Resources/sky.tres" id="1_1rerr"]
+[ext_resource type="Theme" uid="uid://cwjj5uq46b6ki" path="res://Assets/main.tres" id="2_xhh6f"]
+[ext_resource type="FontFile" uid="uid://casu6du157si0" path="res://Resources/fonts/Super Warming.ttf" id="3_cayip"]
+[ext_resource type="PackedScene" uid="uid://x4xnc85khpl5" path="res://Addons/pinjoint-ropephysics/path_3d_rope.tscn" id="5_wbdvm"]
+[ext_resource type="Material" uid="uid://c0vdiomofi8ro" path="res://Addons/pinjoint-ropephysics/materials/red_rope.tres" id="6_q3rjx"]
+
+[sub_resource type="Sky" id="Sky_khtaw"]
+sky_material = ExtResource("1_1rerr")
+
+[sub_resource type="Environment" id="Environment_xhh6f"]
+background_mode = 2
+sky = SubResource("Sky_khtaw")
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_vf3y4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vf3y4"]
+font = ExtResource("3_cayip")
+font_size = 30
+
+[sub_resource type="Curve3D" id="Curve3D_wwsa2"]
+resource_local_to_scene = true
+bake_interval = 512.0
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.01181221, 0, 0, 0, 0, 0, 0, 0, 0, 6.0049486, 0.007156372, 0.0032043457),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[node name="Menu" type="Node3D" unique_id=839591169]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=734238867]
+environment = SubResource("Environment_xhh6f")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=811402192]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.94584215, 4.6443834)
+fov = 86.30771
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=40666072]
+transform = Transform3D(0.91495043, 0, 0.40356624, 0, 1, 0, -0.40356624, 0, 0.91495043, 2.4614496, 0, 4.565233)
+spot_range = 12.878466
+spot_angle = 34.743587
+
+[node name="Menu" type="CanvasLayer" parent="." unique_id=84618300]
+visible = false
+
+[node name="Title" type="TextureRect" parent="Menu" unique_id=918550140]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -291.0
+offset_right = 576.0
+offset_bottom = -0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("PlaceholderTexture2D_vf3y4")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu" unique_id=2127175867]
+offset_left = 421.0
+offset_top = 341.0
+offset_right = 722.0
+offset_bottom = 512.0
+theme = ExtResource("2_xhh6f")
+
+[node name="Play" type="Button" parent="Menu/VBoxContainer" unique_id=1770062742]
+layout_mode = 2
+text = "Play"
+
+[node name="PlayMenu" type="CanvasLayer" parent="." unique_id=1448866636]
+visible = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayMenu" unique_id=918696071]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -141.0
+offset_top = -324.0
+offset_right = 141.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_xhh6f")
+alignment = 1
+
+[node name="Create" type="Button" parent="PlayMenu/VBoxContainer" unique_id=406403734]
+layout_mode = 2
+text = "Create Code"
+
+[node name="Join" type="Button" parent="PlayMenu/VBoxContainer" unique_id=899303884]
+layout_mode = 2
+text = "Join Code"
+
+[node name="JoinCode" type="CanvasLayer" parent="." unique_id=953352741]
+
+[node name="TextEdit" type="TextEdit" parent="JoinCode" unique_id=1491739352]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -99.75
+offset_top = -2.0
+offset_right = 99.75
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+placeholder_text = "Code here..."
+
+[node name="Title" type="Label" parent="JoinCode" unique_id=1073456946]
+offset_top = 288.0
+offset_right = 1152.0
+offset_bottom = 329.0
+text = "Join the Code:"
+label_settings = SubResource("LabelSettings_vf3y4")
+horizontal_alignment = 1
+
+[node name="Path3DRope" parent="." unique_id=301387047 instance=ExtResource("5_wbdvm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.975862, 1.317923, 0)
+curve = SubResource("Curve3D_wwsa2")
+fixed_end_point = true
+material = ExtResource("6_q3rjx")
